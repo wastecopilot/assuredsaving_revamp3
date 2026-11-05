@@ -187,7 +187,7 @@ export const AddressSearch = forwardRef<AddressSearchHandle, { onChoose: (a: Sam
             {/* Like the official "Address Found" card: a picture of the place, the type, then the address */}
             <div className="overflow-hidden rounded-lg border-2 border-ink bg-surface">
               <div className="relative">
-                <Photo slot={s.address.type === "business" ? "business" : "home"} sizes="(min-width: 768px) 720px, 100vw" className="h-40 sm:h-48" />
+                <Photo slot={s.address.type === "business" ? "business" : "home"} sizes="(min-width: 768px) 720px, 100vw" className="h-40 sm:h-48" position={s.address.type === "business" ? "50% 60%" : "62% 55%"} />
                 <span
                   className={clsx(
                     "absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-ink",
@@ -198,7 +198,7 @@ export const AddressSearch = forwardRef<AddressSearchHandle, { onChoose: (a: Sam
                   {t(s.address.type === "business" ? "typeBusiness" : "typeHome")}
                 </span>
                 {/* A solid band (not a gradient) keeps the text readable on any photo */}
-                <div className={clsx("flex items-center gap-3 px-4 py-3 pr-32", hasPhoto(s.address.type === "business" ? "business" : "home") ? "absolute inset-x-0 bottom-0 bg-ink/80" : "bg-ink")}>
+                <div className={clsx("flex items-center gap-3 px-4 py-3", hasPhoto(s.address.type === "business" ? "business" : "home") ? "absolute inset-x-0 bottom-0 bg-ink/80" : "bg-ink pr-32")}>
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-cta text-ink">
                     <Check aria-hidden className="size-5" strokeWidth={3} />
                   </span>

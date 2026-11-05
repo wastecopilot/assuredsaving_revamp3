@@ -81,7 +81,7 @@ export function Hero() {
         photo on the left, the card on the right, so "Check Availability" is on the first screen.
         Phones: headline, card, then the photo.
       */}
-      <div className="mx-auto grid max-w-6xl gap-5 px-4 pb-12 pt-5 sm:px-6 sm:pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,33rem)] lg:gap-x-12 lg:gap-y-8 lg:pb-16 lg:pt-7">
+      <div className="mx-auto grid max-w-6xl gap-5 px-4 pb-12 pt-5 sm:px-6 sm:pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,33rem)] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-8 lg:pb-16 lg:pt-7">
         <div className="lg:col-start-1 lg:row-start-1">
           <h1 id="hero-h" tabIndex={-1} className="rise text-[2rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-ink outline-none sm:text-[3rem] lg:text-[3.5rem]">
             {internetHeadline ? t("heroTitle") : t("intentTitle1")}{" "}
@@ -183,11 +183,11 @@ export function Hero() {
         </div>
 
         {hasPhoto("hero") && (
-          <div className="relative lg:col-start-1 lg:row-start-2">
+          <div className="relative lg:col-start-1 lg:row-start-2 lg:self-start">
             {/* Flat colour blocks peeking out behind the photo */}
             <span aria-hidden className="absolute -right-2 -top-2 hidden size-24 rounded-lg bg-[#FFD400] sm:block lg:-right-4 lg:-top-4 lg:size-28" />
             <span aria-hidden className="absolute -bottom-3 -left-3 hidden size-20 rounded-full bg-cta sm:block lg:size-24" />
-            <Photo slot="hero" priority sizes="(min-width: 1024px) 560px, 100vw" className="relative aspect-[16/9] rounded-lg lg:aspect-[16/10]" />
+            <Photo slot="hero" priority sizes="(min-width: 1024px) 560px, 100vw" className="relative aspect-[16/9] rounded-lg lg:aspect-[16/10]" position="40% 50%" />
           </div>
         )}
       </div>

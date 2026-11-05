@@ -1,1 +1,7 @@
-{}
+{
+  "business": "/photos/business.jpg",
+  "hero": "/photos/hero.jpg",
+  "home": "/photos/home.jpg",
+  "tv": "/photos/tv.jpg",
+  "usage": "/photos/usage.jpg"
+}

@@ -36,6 +36,7 @@ export function Section({ stage, children, className, wide, photo }: { stage: St
               <Photo
                 slot={photo === "place" ? placeSlot : photo}
                 sizes="(min-width: 768px) 768px, 100vw"
+                position={photo === "usage" ? "35% 45%" : photo === "tv" ? "50% 40%" : "60% 55%"}
                 className="h-28 sm:h-44 [@media(max-height:500px)]:hidden"
               />
             )}

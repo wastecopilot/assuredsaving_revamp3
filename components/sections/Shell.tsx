@@ -37,7 +37,8 @@ export const STAGE_LABEL: Record<StageName, Key> = {
   scan: "stage_details",
   results: "stage_details",
 };
-const TRACK: Key[] = ["stage_intent", "stage_address", "stage_details"];
+// Only the step names the official site shows on screen ("Intent" exists in its text bundle but is not shown)
+const TRACK: Key[] = ["stage_address", "stage_details"];
 
 function LangSwitch() {
   const { s, dispatch } = useStore();
@@ -67,8 +68,8 @@ export function StepTrack() {
   return (
     <ol className="flex min-w-0 items-center gap-2 text-sm font-bold">
       {TRACK.map((k, i) => (
-        <li key={k} className={clsx("flex min-w-0 items-center gap-2", i === 0 && "max-md:hidden")} aria-current={i === now ? "step" : undefined}>
-          {i > 0 && <span aria-hidden className={clsx("h-0.5 w-6 shrink-0 rounded-full sm:w-10", i <= now ? "bg-primary" : "bg-line-strong", i === 1 && "max-md:hidden")} />}
+        <li key={k} className="flex min-w-0 items-center gap-2" aria-current={i === now ? "step" : undefined}>
+          {i > 0 && <span aria-hidden className={clsx("h-0.5 w-6 shrink-0 rounded-full sm:w-10", i <= now ? "bg-primary" : "bg-line-strong")} />}
           <span
             aria-hidden
             className={clsx("flex size-6 shrink-0 items-center justify-center rounded-full", i < now ? "bg-primary text-white" : i === now ? "bg-cta text-ink" : "border-2 border-line-strong")}

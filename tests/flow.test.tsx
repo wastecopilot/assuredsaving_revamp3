@@ -289,15 +289,24 @@ describe("full flow to results", () => {
 });
 
 describe("photos", () => {
-  it("shows no stand-in picture before real photos are added, and the Address Found card still works", async () => {
+  it("shows the real photos: the hero, then the business photo on the Address Found card", async () => {
     const user = await start();
-    expect(document.querySelector("[data-photo]")).toBeNull();
+    const heroPhoto = document.querySelector("[data-photo='hero'] img")!;
+    expect(heroPhoto).toHaveAttribute("alt", "");
     await user.click(svc("Internet"));
     await user.type(within(hero()).getByRole("combobox", { name: "Search USA address" }), "658");
     await user.click(await screen.findByRole("option", { name: /658 FL-60/ }));
+    expect(document.querySelector("[data-photo='business'] img")).not.toBeNull();
     expect(screen.getByText("Business Address")).toBeInTheDocument();
-    expect(screen.getByText("Business", { selector: "span" })).toBeInTheDocument();
     expect(screen.getByText("Your Address")).toBeInTheDocument();
+  });
+
+  it("names only the steps the official site shows (no 'Intent')", async () => {
+    const user = await start();
+    await step1(user, ["Internet"], "6585", /Crescent Drive/);
+    await screen.findByLabelText("Your full name", undefined, { timeout: 10000 });
+    expect(screen.getByRole("banner")).not.toHaveTextContent("Intent");
+    expect(document.querySelector("[data-photo='home'] img")).not.toBeNull();
   });
 });
 
