@@ -82,4 +82,12 @@ A separate reviewer drove the production build with Playwright at 1280×720, 144
 - sound results;
 - callback behaviour.
 
-_Results below._
+Results, with the real photos in place:
+- **987 sessions in 60 minutes.**
+- **0 rule violations, 0 wrong screens and 0 horizontal overflow.**
+- 936 reached results, 651 reached usage and 467 reached TV.
+- 259 business choices and 111 no-match errors were shown.
+- 480 opened plan details, 44 callbacks completed and 564 callback errors were shown.
+- 71 Back presses, 45 restarts and 239 language switches.
+
+25 sessions timed out: the page took over 30 s to load, or a step over 8–15 s. They fall in four bursts (#198–230, #358, #387–402, #968–970), when the one local server was saturated by 5 parallel browsers. None showed a wrong state. A re-run at 2 visitors at a time (40 sessions) had **0 problems**, and all 40 reached results.
