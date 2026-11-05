@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* Values come from lib/tokens.ts, written as CSS variables in layout.tsx. Flat colours only. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-on-primary: var(--on-primary);
+  --color-cta: var(--cta);
+  --color-cta-strong: var(--cta-strong);
+  --color-on-cta: var(--on-cta);
+  --color-link: var(--link);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-navy: var(--navy);
+  --color-navy2: var(--navy-2);
+  --color-navy-line: var(--navy-line);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-muted: var(--on-dark-muted);
+  --color-accent: var(--accent);
+  --color-internet: var(--internet);
+  --color-internet-text: var(--internet-text);
+  --color-internet-soft: var(--internet-soft);
+  --color-tv: var(--tv);
+  --color-tv-text: var(--tv-text);
+  --color-tv-soft: var(--tv-soft);
+  --color-phone: var(--phone);
+  --color-phone-text: var(--phone-text);
+  --color-phone-soft: var(--phone-soft);
+  --color-mobile: var(--mobile);
+  --color-mobile-text: var(--mobile-text);
+  --color-mobile-soft: var(--mobile-soft);
+  --color-security: var(--security);
+  --color-security-text: var(--security-text);
+  --color-security-soft: var(--security-soft);
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-sm: var(--sh-sm);
+  --shadow-md: var(--sh-md);
+  --shadow-lg: var(--sh-lg);
+  --shadow-overlay: var(--sh-overlay);
+}
+
+@theme {
+  --spacing: 4px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 20px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+    background: var(--canvas);
+  }
+  body {
+    color: var(--ink);
+    background: var(--canvas);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /* Very long unbroken input (names, addresses) must never widen the page. */
+    overflow-wrap: anywhere;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--cta);
+  }
+  ::selection {
+    background: var(--primary-soft);
+  }
+  h1, h2 {
+    letter-spacing: -0.03em;
+  }
+  ::selection {
+    background: var(--cta);
+    color: var(--ink);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small CSS motion for step 1 (no animation library on first load) */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 360ms cubic-bezier(0.2, 0, 0, 1) both; }
+.press { transition: transform 120ms ease, background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease; }
+.press:active { transform: scale(0.98); }
+
+/* Range slider: flat track, solid fill */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--fill, var(--primary)) var(--pct), var(--line) var(--pct));
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+}
+.range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--fill, var(--primary));
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--fill, var(--primary));
+  box-shadow: var(--sh-md);
+}
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--fill, var(--primary));
+}
+.range:focus-visible {
+  outline: none;
+}
+.range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
